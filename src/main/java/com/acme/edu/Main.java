@@ -1,7 +1,10 @@
 package com.acme.edu;
 
+import com.acme.edu.primitives.Demo;
+import com.acme.edu.primitives.Demo_1;
+
 public class Main {
     public static void main(String[] args) {
-        Logger.log(1,2);
+        Demo_1.log(1,2);
     }
 }
