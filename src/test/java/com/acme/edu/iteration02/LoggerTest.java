@@ -56,16 +56,21 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log(Integer.MAX_VALUE);
         Logger.log("str 2");
         Logger.log(0);
+        Logger.flush();
         //endregion
 
         //region then
-        assertSysoutEquals(
-            "str 1\n" +
-            "10\n" +
-            Integer.MAX_VALUE + "\n" +
-            "str 2\n" +
-            "0\n"
+        assertSysoutContains("str 1" + System.getProperty("line.separator")
+        );//endregion
+        assertSysoutContains("10" + System.getProperty("line.separator")
         );
+        assertSysoutContains(Integer.MAX_VALUE + System.getProperty("line.separator")
+        );
+        assertSysoutContains("str 2" + System.getProperty("line.separator")
+        );
+        assertSysoutContains("0" + System.getProperty("line.separator")
+        );
+
         //endregion
     }
 /*
