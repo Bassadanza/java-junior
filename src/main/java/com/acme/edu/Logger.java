@@ -12,14 +12,14 @@ public class Logger {
     }
 
     public static void log(int message) {
-        if (count + (long) message > Integer.MAX_VALUE) {
+        if (count + (long) message > Integer.MAX_VALUE || count + (long)message > Integer.MIN_VALUE) {
             flush();
         }
         count += message;
     }
 
     public static void log(int[] message) {
-        System.out.println("primitives array: " + arrOut(message));
+        System.out.println("primitives array: " + arrOut(message).toString());
     }
 
     public static void log(int[][] message) {
@@ -51,7 +51,7 @@ public class Logger {
         count = 0;
     }
 
-    public static String arrOut(int[] message) {
+    public static StringBuffer arrOut(int[] message) {
         StringBuffer strBuff = new StringBuffer();
         strBuff.append("{");
         for (int i = 0; i < message.length; i++) {
@@ -59,24 +59,18 @@ public class Logger {
             if (i != message.length - 1) strBuff.append(", ");
         }
         strBuff.append("}");
-        return strBuff.toString();
+        return strBuff;
     }
 
     public static String matrixOut(int[][] message) {
         StringBuffer strBuff = new StringBuffer();
         strBuff.append("{" + System.getProperty("line.separator"));
         for (int i = 0; i < message.length; i++) {
-            strBuff.append("{");
-            for (int j = 0; j < message[i].length; j++) {
-                strBuff.append(message[i][j]);
-                if (j != message[i].length - 1) strBuff.append(", ");
-            }
-            strBuff.append("}" + System.getProperty("line.separator"));
+            strBuff.append(
+                    arrOut(message[i]) + System.getProperty("line.separator"));
         }
         strBuff.append("}");
         return strBuff.toString();
     }
-
-
 }
 
