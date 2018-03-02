@@ -28,19 +28,19 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogIntegersArray() throws IOException {
         //region when
-        Logger.log(new int[] {-1, 0, 1});
+        Logger.log(new int[]{-1, 0, 1});
         //endregion
 
         //region then
         assertSysoutEquals(
-            "primitives array: {-1, 0, 1}" + System.getProperty("line.separator")
+                "primitives array: {-1, 0, 1}" + System.getProperty("line.separator")
         );
         //endregion
     }
 
     @Test
     public void shouldLogIntegersMatrix() throws IOException {
-        Logger.log(new int[][] {{-1, 0, 1}, {1, 2, 3}, {-1, -2, -3}});
+        Logger.log(new int[][]{{-1, 0, 1}, {1, 2, 3}, {-1, -2, -3}});
 
 //        assertSysoutEquals(
 //            "" + System.getProperty("line.separator")+
@@ -118,6 +118,5 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         assertSysoutContains(11);
         //endregion
     }
-
     */
 }

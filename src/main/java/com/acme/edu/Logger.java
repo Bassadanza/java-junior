@@ -1,24 +1,22 @@
 package com.acme.edu;
 
 public class Logger {
-    static int count = 0;
+     private static int count = 0;
+Controller controller = new Controller(new ConsoleSaver());
 
     public static void log(byte message) {
-        /*if (message == Byte.MAX_VALUE) {
-            flush();
-        } else {*/
-        System.out.println("primitive: " + message);
-        //}
+        new soutPrinterWithPrefix("primitives: ", new Message(message)).print();
     }
 
     public static void log(int message) {
-        if (count + (long) message > Integer.MAX_VALUE || count + (long)message > Integer.MIN_VALUE) {
+        if (count + (long) message > Integer.MAX_VALUE || count + (long)message < Integer.MIN_VALUE) {
             flush();
         }
         count += message;
     }
 
     public static void log(int[] message) {
+        controller.save(new IntArrayMessage(message));
         System.out.println("primitives array: " + arrOut(message).toString());
     }
 
@@ -51,7 +49,7 @@ public class Logger {
         count = 0;
     }
 
-    public static StringBuffer arrOut(int[] message) {
+    private static StringBuffer arrOut(int[] message) {
         StringBuffer strBuff = new StringBuffer();
         strBuff.append("{");
         for (int i = 0; i < message.length; i++) {
@@ -62,15 +60,13 @@ public class Logger {
         return strBuff;
     }
 
-    public static String matrixOut(int[][] message) {
-        StringBuffer strBuff = new StringBuffer();
-        strBuff.append("{" + System.getProperty("line.separator"));
-        for (int i = 0; i < message.length; i++) {
-            strBuff.append(
-                    arrOut(message[i]) + System.getProperty("line.separator"));
+    private static String matrixOut(int[][] message) {
+        StringBuilder strBuff = new StringBuilder();
+        strBuff.append("{").append(System.getProperty("line.separator"));
+        for (int[] aMessage : message) {
+            strBuff.append(arrOut(aMessage)).append(System.getProperty("line.separator"));
         }
         strBuff.append("}");
         return strBuff.toString();
     }
 }
-
