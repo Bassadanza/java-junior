@@ -1,21 +1,34 @@
 package com.acme.edu;
 
+import static com.acme.edu.Message.Type.BYTE;
+
 public class Message {
-    private T[] message;
-
-    public Message(byte message) {
-      //  setMessage(message);
+    private ByteMessage byteMessage;
+    private Type type;
+    enum Type {
+        BYTE
+    }
+    public Type getType() {
+        return type;
     }
 
-    public T[] getMessage() {
-        return message;
+
+
+    public Message(byte byteMessage) {
+        setByteMessage(new ByteMessage(byteMessage));
     }
 
-    public void setMessage(T[] message) {
-        this.message = message;
+    private void setByteMessage(ByteMessage byteMessage) {
+        this.byteMessage = byteMessage;
+        this.type = BYTE;
     }
 
-    public Message(T[] message){
-        setMessage(message);
+    public String getMessage() {
+        switch (getType()) {
+            case BYTE:
+                return "primitive: " + String.valueOf(byteMessage.getByteMessage());
+            default:
+                return null;
+        }
     }
 }

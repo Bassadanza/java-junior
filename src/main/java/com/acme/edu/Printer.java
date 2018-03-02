@@ -1,5 +1,5 @@
 package com.acme.edu;
 
 public interface Printer {
-    void print();
+    void print(Message message);
 }

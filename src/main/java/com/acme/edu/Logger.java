@@ -2,10 +2,10 @@ package com.acme.edu;
 
 public class Logger {
      private static int count = 0;
-Controller controller = new Controller(new ConsoleSaver());
+     private static Controller controller = new Controller(new ConsolePrinter());
 
-    public static void log(byte message) {
-        new soutPrinterWithPrefix("primitives: ", new Message(message)).print();
+    public static void log(byte byteMessage) {
+        controller.print(new Message(byteMessage));
     }
 
     public static void log(int message) {
@@ -16,7 +16,7 @@ Controller controller = new Controller(new ConsoleSaver());
     }
 
     public static void log(int[] message) {
-        controller.save(new IntArrayMessage(message));
+
         System.out.println("primitives array: " + arrOut(message).toString());
     }
 
