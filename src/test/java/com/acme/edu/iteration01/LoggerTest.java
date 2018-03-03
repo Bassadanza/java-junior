@@ -43,9 +43,9 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogByte() throws IOException {
         //region when
-        Logger.log((byte)1);
-        Logger.log((byte)0);
-        Logger.log((byte)-1);
+        Logger.log((Byte)(byte)1);
+        Logger.log((Byte)(byte)0);
+        Logger.log((Byte)(byte)-1);
         //endregion
 
         //region then
@@ -62,8 +62,8 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogChar() throws IOException {
         //region when
-        Logger.log('a');
-        Logger.log('b');
+        Logger.log((Character)'a');
+        Logger.log((Character)'b');
         //endregion
 
         //region then

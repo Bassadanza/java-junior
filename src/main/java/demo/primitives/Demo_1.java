@@ -1,6 +1,4 @@
-package com.acme.edu.primitives;
-
-import com.acme.edu.Logger;
+package demo.primitives;
 
 import static java.lang.Math.sin;
 

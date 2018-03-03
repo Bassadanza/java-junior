@@ -1,4 +1,4 @@
-package com.acme.edu.primitives;
+package demo.primitives;
 
 public class Demo {
     public strictfp static void main(String[] args) {
