@@ -3,21 +3,21 @@ package com.acme.edu.messages;
 public class Message {
     private String typedMessage;
     private String PREFIX;
-    private boolean isInteger;
+    private boolean needToSum = false;
 
-    public boolean isInteger() {
-        return isInteger;
+    public boolean isNeedToSum() {
+        return needToSum;
     }
 
-    public void setIsInteger(final boolean integer) {
-        isInteger = integer;
+    void setNeedToSum(final boolean need) {
+        needToSum = need;
     }
 
     public String getPREFIX() {
         return PREFIX;
     }
 
-    public void setPREFIX(final String PREFIX) {
+    void setPREFIX(final String PREFIX) {
         this.PREFIX = PREFIX;
     }
 
@@ -25,7 +25,7 @@ public class Message {
         return typedMessage;
     }
 
-    protected void setTypedMessage(final String typedMessage) {
+    void setTypedMessage(final String typedMessage) {
         this.typedMessage = typedMessage;
     }
 }

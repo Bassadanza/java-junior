@@ -2,23 +2,25 @@ package com.acme.edu.messages;
 
 import com.acme.edu.Controller;
 
-import static com.acme.edu.Logger.flush;
-
-public class StringMessage extends Message{
+public class StringMessage extends Message {
     private static final String PREFIX = "string: ";
     private Controller controller;
 
     public StringMessage(String stringMessage, Controller controller) {
         this.controller = controller;
-        checkForSum();
+        checkForSum(stringMessage);
         super.setPREFIX(PREFIX);
-        super.setTypedMessage(stringMessage);
+
     }
 
-    private void checkForSum(){
-        if (controller.getSum() != 0) {
-            flush();
-        }
+    private void checkForSum(String stringMessage) {
+        if(stringMessage.equals(controller.getLastString())){
+            controller.plusLastString();
 
+        } else{
+            controller.setLastString(stringMessage);
+            super.setTypedMessage(stringMessage);
+        }
+        controller.setLastType("STRING");
     }
 }

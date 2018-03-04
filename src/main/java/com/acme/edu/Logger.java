@@ -7,13 +7,13 @@ import com.acme.edu.printer.ConsolePrinter;
 public class Logger {
     private static Controller controller = new Controller(new ConsolePrinter());
 
-    //region Test1
+    //region Test 1, 2
     public static void log(final Integer intMessage) {
         controller.print(new IntMessage(intMessage, controller));
     }
 
     public static void log(final Byte byteMessage) {
-        controller.print(new ByteMessage(byteMessage));
+        controller.print(new ByteMessage(byteMessage, controller));
     }
 
     public static void log(final Character charMessage) {
@@ -21,7 +21,6 @@ public class Logger {
     }
 
     public static void log(final String stringMessage) {
-
         controller.print(new StringMessage(stringMessage, controller));
     }
 
@@ -32,8 +31,8 @@ public class Logger {
     public static void log(final Object objectMessage) {
         controller.print(new ObjectMessage(objectMessage));
     }
-
     //endregion
+
     public static void log(final int[] message) {
 
         System.out.println("primitives array: " + arrOut(message).toString());
@@ -45,9 +44,9 @@ public class Logger {
     }
 
     public static void flush() {
-        System.out.println(controller.getSum());
-        controller.setSum(-controller.getSum());
-
+        //System.out.println(controller.getIntSum());
+        //controller.setIntSum(-controller.getIntSum());
+        controller.flush();
     }
 
     private static StringBuffer arrOut(final int[] message) {
@@ -55,7 +54,7 @@ public class Logger {
         strBuff.append("{");
         for (int i = 0; i < message.length; i++) {
             strBuff.append(message[i]);
-            if (i != message.length - 1){
+            if (i != message.length - 1) {
                 strBuff.append(", ");
             }
         }
