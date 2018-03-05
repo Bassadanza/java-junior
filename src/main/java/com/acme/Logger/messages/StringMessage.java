@@ -10,14 +10,13 @@ public class StringMessage extends Message {
         this.controller = controller;
         checkForSum(stringMessage);
         super.setPREFIX(PREFIX);
-
     }
 
     private void checkForSum(String stringMessage) {
         if(stringMessage.equals(controller.getLastString())){
             controller.plusLastString();
-
         } else{
+
             controller.setLastString(stringMessage);
             super.setTypedMessage(stringMessage);
         }

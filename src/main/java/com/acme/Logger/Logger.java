@@ -44,8 +44,6 @@ public class Logger {
     }
 
     public static void flush() {
-        //System.out.println(controller.getIntSum());
-        //controller.setIntSum(-controller.getIntSum());
         controller.flush();
     }
 
