@@ -1,43 +1,31 @@
 package demo;
 
 import demo.messages.Messagee;
-import demo.printer.ConsolePrinterr;
 import demo.printer.Printerr;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Controllerr {
-    private final Printerr printerr = new ConsolePrinterr();
-    private ArrayList<Messagee> buffer = new ArrayList<>();
+    private Printerr printerr;
+    private Messagee previousMessagee = null;
+
+    public Controllerr(Printerr printerr) {
+        this.printerr = printerr;
+    }
+
+    public void setPreviousMessagee(Messagee previousMessagee) {
+        this.previousMessagee = previousMessagee;
+    }
 
     public Messagee getPreviousMessagee() {
         return previousMessagee;
     }
 
-    private Messagee previousMessagee = null;
-
-    public List<Messagee> getBuffer() {
-        return buffer;
-    }
-
-    public void bufferToNull() {
-        buffer.clear();
-    }
-
-    public void addBuffer(Messagee messagee) {
-        buffer.add(messagee);
-        previousMessagee = messagee;
-    }
-
     public void execute(Messagee messagee) {
         if (previousMessagee == null) {
-            addBuffer(messagee);
+            messagee.accumulate();
         } else if (isTheSameType(messagee)) {
-            messagee.decorate();
+            messagee.accumulate();
         } else {
             flush();
-            addBuffer(messagee);
         }
     }
 
@@ -46,11 +34,6 @@ public class Controllerr {
     }
 
     public void flush() {
-        if ((previousMessagee != null)) {
-            previousMessagee.accumulate();
-            printerr.print(previousMessagee.decorate());
-            bufferToNull();
-            previousMessagee = null;
-        }
+        printerr.print(previousMessagee.decorate());
     }
 }

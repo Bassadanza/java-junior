@@ -1,12 +1,18 @@
 package demo.messages;
 
 import demo.Controllerr;
+
 import java.util.List;
 
 public class StrMessagee implements Messagee {
     private String message;
     private Controllerr controllerr;
     private String sum;
+    private int sameStringCount = 0;
+
+    public int getSameCounter() {
+        return sameStringCount;
+    }
 
     public StrMessagee(String message, Controllerr controllerr) {
         this.message = message;
@@ -18,25 +24,37 @@ public class StrMessagee implements Messagee {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     @Override
     public void accumulate() {
-        if(!(controllerr.getPreviousMessagee().getMessagee().equals(this.getMessagee()))){
-            controllerr.flush();
+        if ((controllerr.getPreviousMessagee()) != null) {
+            sameStringCount = controllerr.getPreviousMessagee().getSameCounter() + 1;
+            if (!message.equals(controllerr.getPreviousMessagee().getMessagee())) {
+                controllerr.flush();
+            }
+        } else {
+            sameStringCount += 1;
         }
-        controllerr.addBuffer(this);
+        sum = message;
+        controllerr.setPreviousMessagee(this);
     }
 
     @Override
     public Object decorate() {
-        this.sum = encode(controllerr.getBuffer());
-        controllerr.bufferToNull();
-        return sum;
-
+        if (sameStringCount > 1) {
+            return sum + " (x" + sameStringCount + ")";
+        } else {
+            return sum;
+        }
     }
+
+    /*public boolean equals(Object object) {
+        String buffer = (String) object;
+        if (buffer.substring(0, message.length() - 1).compareTo(message) == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }*/
 
     private String encode(List<Messagee> messagee) {
         StringBuffer dest = new StringBuffer();
@@ -47,11 +65,11 @@ public class StrMessagee implements Messagee {
                 i++;
             }
             dest.append(messagee.get(i).getMessagee().toString());
-            if(runLength > 1){
+            if (runLength > 1) {
                 dest.append(" (x" + runLength + ")");
             }
         }
-        controllerr.bufferToNull();
+        // controllerr.bufferToNull();
         return dest.toString();
     }
 }

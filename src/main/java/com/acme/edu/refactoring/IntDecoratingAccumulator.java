@@ -1,6 +1,6 @@
 package com.acme.edu.refactoring;
 
-public class IntDecoratingAccumulator implements LoggerDecorator, LoggerAccumulator {
+/* public class IntDecoratingAccumulator implements LoggerDecorator, LoggerAccumulator {
     @Override
     public void decorate() {
 //dlfhdkfgjhdfkgjdhgkfjdh
@@ -11,3 +11,4 @@ public class IntDecoratingAccumulator implements LoggerDecorator, LoggerAccumula
         return false;
     }
 }
+*/

@@ -6,4 +6,6 @@ public interface Messagee {
     Object getMessagee();
 
     Object decorate();
+
+    int getSameCounter();
 }

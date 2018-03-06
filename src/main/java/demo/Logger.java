@@ -2,10 +2,10 @@ package demo;
 
 import demo.messages.IntMessagee;
 import demo.messages.StrMessagee;
+import demo.printer.ConsolePrinterr;
 
 public class Logger{
-
-   private static Controllerr controller = new Controllerr();
+   private static Controllerr controller = new Controllerr(new ConsolePrinterr());
 
    public static void log(Integer message){
        controller.execute(new IntMessagee(message, controller));
