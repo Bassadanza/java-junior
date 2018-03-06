@@ -1,7 +1,9 @@
 package demo.messages;
 
 public interface Messagee {
-    boolean accumulate();
+    void accumulate();
 
-    public Object decorate();
+    Object getMessagee();
+
+    Object decorate();
 }

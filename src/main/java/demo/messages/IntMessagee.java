@@ -1,12 +1,14 @@
 package demo.messages;
 
 import demo.Controllerr;
+import java.util.List;
 
-public class IntMessagee implements Messagee{
+public class IntMessagee implements Messagee {
     private int messagee;
     private Controllerr controlerr;
+    private int sum;
 
-    public int getMessagee() {
+    public Object getMessagee() {
         return messagee;
     }
 
@@ -20,16 +22,18 @@ public class IntMessagee implements Messagee{
     }
 
     @Override
-    public boolean accumulate() {
-        if (!(controlerr.getList().get(controlerr.getList().size()) instanceof Integer)){
-            //flush();
+    public void accumulate() {
+        List<Messagee> list = controlerr.getBuffer();
+        int sum = 0;
+        for (Messagee current : list) {
+            sum += (Integer)current.getMessagee();
         }
-        controlerr.setBuffer(getMessagee());
-        return true;
+        this.sum = sum;
     }
 
     @Override
     public Object decorate() {
-        return null;
+        controlerr.bufferToNull();
+        return sum;
     }
 }
