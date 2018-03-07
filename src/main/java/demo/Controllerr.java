@@ -26,10 +26,11 @@ public class Controllerr {
             messagee.accumulate();
         } else {
             flush();
+            messagee.accumulate();
         }
     }
 
-    private boolean isTheSameType(Messagee messagee) {
+    public boolean isTheSameType(Messagee messagee) {
         return previousMessagee.getMessagee().getClass().equals(messagee.getMessagee().getClass());
     }
 

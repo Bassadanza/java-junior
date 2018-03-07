@@ -28,11 +28,12 @@ public class StrMessagee implements Messagee {
     public void accumulate() {
         if ((controllerr.getPreviousMessagee()) != null) {
             sameStringCount = controllerr.getPreviousMessagee().getSameCounter() + 1;
-            if (!message.equals(controllerr.getPreviousMessagee().getMessagee())) {
+            if (controllerr.isTheSameType(this) & !message.equals(controllerr.getPreviousMessagee().getMessagee())) {
                 controllerr.flush();
+                sameStringCount = 1;
             }
         } else {
-            sameStringCount += 1;
+            sameStringCount = 0;
         }
         sum = message;
         controllerr.setPreviousMessagee(this);
@@ -65,8 +66,8 @@ public class StrMessagee implements Messagee {
                 i++;
             }
             dest.append(messagee.get(i).getMessagee().toString());
-            if (runLength > 1) {
-                dest.append(" (x" + runLength + ")");
+            if (runLength >= 1) {
+                dest.append(" (x" + runLength + 1 + ")");
             }
         }
         // controllerr.bufferToNull();
