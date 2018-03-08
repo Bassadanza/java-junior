@@ -733,7 +733,7 @@ assertMessageEquals("3")
 - Teams deliver product with six iterations
 
 ## Then
-- PM and Business Customers accept product with four demo sessions
+- PM and Business Customers accept product with four Logger sessions
 
 ---
 
