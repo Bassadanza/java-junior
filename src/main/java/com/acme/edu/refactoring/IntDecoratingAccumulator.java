@@ -10,5 +10,15 @@ package com.acme.edu.refactoring;
     public boolean accumulate() {
         return false;
     }
+
+    @Override
+    public String getField() {
+        return null;
+    }
+
+    @Override
+    public void mm() {
+
+    }
 }
 */
