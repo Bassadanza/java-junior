@@ -1,32 +1,32 @@
-package Logger.messages;
+package logger.messages;
 
-import Logger.Controller;
-import Logger.Designer.Visitor;
+import logger.Controller;
+import logger.designer.Visitor;
 
 /**
  * Вывод многомерных массивов не реализован
  */
 public final class MultyArrayCommand implements Command {
-    private Controller controller;
-    private int[][][][] multydimArrayCommand;
+  private Controller controller;
+  private int[][][][] multydimArrayCommand;
 
-    @Override
-    public void accumulate(final Command command) {
+  @Override
+  public void accumulate(final Command command) {
 
-    }
+  }
 
-    @Override
-    public Object getMessage() {
-        return multydimArrayCommand;
-    }
+  @Override
+  public Object getMessage() {
+    return multydimArrayCommand;
+  }
 
-    @Override
-    public int getCounter() {
-        return 42;
-    }
+  @Override
+  public int getCounter() {
+    return 42;
+  }
 
-    @Override
-    public String acceptVisitor(final Visitor visitor) {
-        return visitor.visitMultydimArray(this);
-    }
+  @Override
+  public String acceptVisitor(final Visitor visitor) {
+    return visitor.visitMultydimArray(this);
+  }
 }

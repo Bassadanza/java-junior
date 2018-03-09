@@ -1,6 +1,6 @@
 package com.acme.edu.iteration01;
 
-import Logger.Logger;
+import logger.Logger;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
 import org.junit.After;
 import org.junit.Before;
@@ -53,7 +53,7 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
-   // TODO: implement Logger solution to match specification as tests
+   // TODO: implement logger solution to match specification as tests
 
     @Test
     public void shouldLogChar() throws IOException {

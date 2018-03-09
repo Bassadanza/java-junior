@@ -1,6 +1,6 @@
 package com.acme.edu.iteration03;
 
-import Logger.Logger;
+import logger.Logger;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
 import org.junit.After;
 import org.junit.Before;

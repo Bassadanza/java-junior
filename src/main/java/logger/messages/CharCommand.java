@@ -1,59 +1,38 @@
-package Logger.messages;
+package logger.messages;
 
-import Logger.Controller;
-import Logger.Designer.Visitor;
+import logger.Controller;
+import logger.designer.Visitor;
+import logger.messages.CommandUtils.CharStringUtils;
 
 public final class CharCommand implements Command {
 
-    private Controller controller;
-    private Character charMessage;
-    private int sameStringCount;
+  private Controller controller;
+  private Character charMessage;
+  private int sameCount;
 
-    public CharCommand(final char charMessage, final Controller controller) {
-        this.controller = controller;
-        this.charMessage = charMessage;
-    }
+  public CharCommand(final char charMessage, final Controller controller) {
+    this.controller = controller;
+    this.charMessage = charMessage;
+  }
 
-    @Override
-    public void accumulate(final Command previousMessagee) {
-        havePreviousCommand(previousMessagee);
-        controller.setPreviousCommand(this);
-    }
+  @Override
+  public void accumulate(final Command previousMessagee) {
+    sameCount = CharStringUtils.getSameCount(previousMessagee, controller, this);
+    controller.setPreviousCommand(this);
+  }
 
-    private void havePreviousCommand(final Command previousCommand) {
-        if (previousCommand != null) {
-            if (controller.isTheSameType(this)) {
-                areEquals(previousCommand);
-            } else {
-                controller.flush();
-                sameStringCount = 1;
-            }
-        } else {
-            sameStringCount = 1;
-        }
-    }
+  @Override
+  public Object getMessage() {
+    return charMessage;
+  }
 
-    private void areEquals(final Command previousCommand) {
-        if (charMessage.equals(previousCommand.getMessage())) {
-            sameStringCount = previousCommand.getCounter() + 1;
-        } else {
-            controller.flush();
-            sameStringCount = 1;
-        }
-    }
+  @Override
+  public int getCounter() {
+    return sameCount;
+  }
 
-    @Override
-    public Object getMessage() {
-        return charMessage;
-    }
-
-    @Override
-    public int getCounter() {
-        return sameStringCount;
-    }
-
-    @Override
-    public String acceptVisitor(final Visitor visitor) {
-        return visitor.visitChar(this);
-    }
+  @Override
+  public String acceptVisitor(final Visitor visitor) {
+    return visitor.visitChar(this);
+  }
 }

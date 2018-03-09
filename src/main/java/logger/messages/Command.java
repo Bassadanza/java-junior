@@ -1,18 +1,19 @@
-package Logger.messages;
+package logger.messages;
 
-import Logger.Designer.Visitor;
+import logger.designer.Visitor;
 
 public interface Command {
-    /**
-     * Аккумуляция входной команды
-     * @param command
-     */
-    void accumulate(final Command command);
+  /**
+   * Аккумуляция входной команды
+   *
+   * @param command
+   */
+  void accumulate(final Command command);
 
-    Object getMessage();
+  Object getMessage();
 
-    int getCounter();
+  int getCounter();
 
-    String acceptVisitor(final Visitor visitor);
+  String acceptVisitor(final Visitor visitor);
 
 }

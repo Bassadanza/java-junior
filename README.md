@@ -169,7 +169,7 @@ $ git push
 - Interning
 - String concatenation
 
-## Course Project Iteration 01: The Rise of Logger Library
+## Course Project Iteration 01: The Rise of logger Library
 - Read and analyse specification as tests for this iteration in *src/test*
 - Uncomment specification cases
 - Implement features needed
@@ -192,7 +192,7 @@ $ git push
 - for/do/while/foreach
 - Procedure Metrics: CC
 
-## Course Project Iteration 02: Logger Library
+## Course Project Iteration 02: logger Library
 - Read and analyse specification as tests for this iteration in *src/test*
 - Uncomment specification cases
 - Implement features needed
@@ -212,7 +212,7 @@ $ git push
 - Using
 - Constraints
 
-## Course Project Iteration 03: Logger Library
+## Course Project Iteration 03: logger Library
 - Read and analyse specification as tests for this iteration in *src/test*
 - Uncomment specification cases
 - Implement features needed
@@ -235,7 +235,7 @@ $ git push
 - Stateful and stateless design
 - Metrics of OOAD: Coupling and Cohesion
 
-## Demo: Logger Library Refactoring to OO-Design
+## Demo: logger Library Refactoring to OO-Design
 - Example Appenders and Filters
 - What are the profits for our library?
 
@@ -258,7 +258,7 @@ $ git push
 - Switch recap
 - Smart Enum Pattern
 
-## Course Project Iteration 04: Logger Library towards OO through Enums
+## Course Project Iteration 04: logger Library towards OO through Enums
 - FR: presentation changes
 - Refactor to Enums: Dumb Commands
 
@@ -283,7 +283,7 @@ $ git push
 - Object Initializers
 - Constructors with inheritance issue
 
-## Course Project Iteration 05: Logger Library towards OO through Classes
+## Course Project Iteration 05: logger Library towards OO through Classes
 - FR: presentation changes
 - Introduce Facade Design Pattern
 - Refactor to Smart Commands with classes
@@ -310,7 +310,7 @@ $ git push
 - Default modifiers for fields and methods
 - Static and default (defender) methods
 
-## Course Project Iteration 06: OOD Logger Library reached
+## Course Project Iteration 06: OOD logger Library reached
 - FR: presentation changes and sink changes
 - Refactor to Polymorphic Commands and Appenders
 
@@ -356,11 +356,11 @@ $ git push
 - Observer
 - Visitor intro
 
-## Discussion: Logger Library Design meets principles and patterns
+## Discussion: logger Library Design meets principles and patterns
 - What inner NFR issues do we have now
 - What refactorings to do
 
-## Course Project Iteration 07: Logger Library testability and supportability reached
+## Course Project Iteration 07: logger Library testability and supportability reached
 - FR: presentation changes and sink changes
 - Refactor to DI
 
@@ -478,7 +478,7 @@ $ git push
 - Wrapper classes
 - Autoboxing
 
-## Course Project Iteration 12: Logger Library Maturity Grown
+## Course Project Iteration 12: logger Library Maturity Grown
 - NFR: As a developer I want higher collection performance for messages through non-default eq and hc
 - NRF: As a developer I want more polymorphism with toS for messages
 - NFR: As a developer I want lower memory consumption through StringB*
@@ -733,7 +733,7 @@ assertMessageEquals("3")
 - Teams deliver product with six iterations
 
 ## Then
-- PM and Business Customers accept product with four Logger sessions
+- PM and Business Customers accept product with four logger sessions
 
 ---
 

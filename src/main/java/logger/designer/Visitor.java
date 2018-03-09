@@ -1,29 +1,29 @@
-package Logger.Designer;
+package logger.designer;
 
-import Logger.messages.*;
+import logger.messages.*;
 
 /**
  * Интерфейс для выбора способа декорирования выводимого
  * сообщения, основанный на паттерне Посетитель
  */
 public interface Visitor {
-    String visitInt(IntCommand command);
+  String visitInt(IntCommand command);
 
-    String visitString(StringCommand command);
+  String visitString(StringCommand command);
 
-    String visitBoolean(BooleanCommand command);
+  String visitBoolean(BooleanCommand command);
 
-    String export(Command... args);
+  String export(Command... args);
 
-    String visitObject(ObjectCommand objectCommand);
+  String visitObject(ObjectCommand objectCommand);
 
-    String visitChar(CharCommand charCommand);
+  String visitChar(CharCommand charCommand);
 
-    String visitByte(ByteCommand byteCommand);
+  String visitByte(ByteCommand byteCommand);
 
-    String visitArray(ArrayCommand arrayCommand);
+  String visitArray(ArrayCommand arrayCommand);
 
-    String visitMatrix(MatrixCommand matrixCommand);
+  String visitMatrix(MatrixCommand matrixCommand);
 
-    String visitMultydimArray(MultyArrayCommand multyArrayCommand);
+  String visitMultydimArray(MultyArrayCommand multyArrayCommand);
 }

@@ -1,4 +1,4 @@
-package Logger.printer;
+package logger.printer;
 
 public class ConsolePrinterr implements Printerr {
     @Override
