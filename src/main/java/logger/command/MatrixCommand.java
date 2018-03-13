@@ -1,25 +1,22 @@
 package logger.command;
 
-import logger.Controller;
 import logger.command.CommandUtils.ArrayFormatter;
 import logger.formatter.Visitor;
 
 public final class MatrixCommand extends ArrayFormatter implements Command {
-  private Controller controller;
   private int[][] matrixCommand;
 
-  public MatrixCommand(final int[][] matrixCommand,
-                       final Controller controller) {
-    this.controller = controller;
+  public MatrixCommand(final int[][] matrixCommand) {
     this.matrixCommand = matrixCommand;
   }
 
   @Override
-  public void accumulate(final Command previousCommand) {
+  public boolean accumulate(final Command previousCommand) {
+    return true;
   }
 
   @Override
-  public void dontAccamulate() {
+  public void dontAccumulate() {
 
   }
 

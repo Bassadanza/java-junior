@@ -8,7 +8,7 @@ public interface Command {
    *
    * @param command
    */
-  void accumulate(final Command command);
+  boolean accumulate(final Command command);
 
   Object getMessage();
 
@@ -16,7 +16,7 @@ public interface Command {
 
   String acceptVisitor(final Visitor visitor);
 
-  void dontAccamulate();
+  void dontAccumulate();
 
   String decorate();
 }

@@ -25,5 +25,4 @@ public interface Visitor {
 
   String visitMatrix(MatrixCommand matrixCommand);
 
-  String visitMultydimArray(MultyArrayCommand multyArrayCommand);
 }

@@ -1,18 +1,14 @@
 package logger.command;
 
-import logger.Controller;
-import logger.command.CommandUtils.OverflowableDecimal;
+import logger.command.CommandUtils.DecimalOverflowNAccumulate;
 import logger.formatter.Visitor;
 
-public final class IntCommand extends OverflowableDecimal implements Command {
+public final class IntCommand extends DecimalOverflowNAccumulate implements Command {
   private int intMessage;
-  private Controller controller;
   private int intSum = 0;
 
-  public IntCommand(final int intMessage,
-                    final Controller controllerr) {
+  public IntCommand(final int intMessage) {
     this.intMessage = intMessage;
-    this.controller = controllerr;
   }
 
   @Override
@@ -22,7 +18,7 @@ public final class IntCommand extends OverflowableDecimal implements Command {
 
   @Override
   protected int getMax() {
-    return Integer.MIN_VALUE;
+    return Integer.MAX_VALUE;
   }
 
   public Object getMessage() {
@@ -35,18 +31,20 @@ public final class IntCommand extends OverflowableDecimal implements Command {
   }
 
   @Override
-  public void accumulate(final Command previousCommand) {
-    if(isOverflow(previousCommand, intMessage)){
-      controller.flush();
-      intSum = intMessage;
-    }else{
-        intSum = previousCommand.getCounter() + intMessage;
-    }
+  public boolean accumulate(final Command previousCommand) {
+    return accumulate(
+        intMessage,
+        previousCommand.getCounter());
   }
 
   @Override
-  public void dontAccamulate() {
+  public void dontAccumulate() {
     intSum = intMessage;
+  }
+
+  @Override
+  protected void setCounter(int sum) {
+    this.intSum = sum;
   }
 
   @Override

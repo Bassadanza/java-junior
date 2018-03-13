@@ -1,37 +1,14 @@
 package logger.command;
 
-import logger.Controller;
+import logger.command.CommandUtils.PrimitiveFormatterNAccumulate;
 import logger.formatter.Visitor;
 
-public final class ObjectCommand implements Command {
+public final class ObjectCommand extends PrimitiveFormatterNAccumulate implements Command {
   private int sameCounter;
-  private Controller controller;
   private Object objectMessage;
 
-  public ObjectCommand(final Object objectMessage,
-                       final Controller controller) {
-    this.controller = controller;
+  public ObjectCommand(final Object objectMessage) {
     this.objectMessage = objectMessage;
-  }
-
-  @Override
-  public void accumulate(final Command previousCommand) {
-    if(objectMessage.equals(previousCommand.getMessage())){
-      sameCounter = previousCommand.getCounter() + 1;
-    }else {
-      controller.flush();
-      dontAccamulate();
-    }
-  }
-
-  @Override
-  public void dontAccamulate() {
-    sameCounter = 1;
-  }
-
-  @Override
-  public String decorate() {
-    return (String) objectMessage;
   }
 
   @Override
@@ -42,6 +19,29 @@ public final class ObjectCommand implements Command {
   @Override
   public int getCounter() {
     return sameCounter;
+  }
+
+  @Override
+  protected void setSum(int counter) {
+    this.sameCounter = counter;
+  }
+
+  @Override
+  public boolean accumulate(final Command previousCommand) {
+    return accumulate(
+        previousCommand.getMessage().toString(),
+        getMessage().toString(),
+        previousCommand.getCounter());
+  }
+
+  @Override
+  public void dontAccumulate() {
+    sameCounter = 1;
+  }
+
+  @Override
+  public String decorate() {
+    return decorate(getMessage().toString(), getCounter());
   }
 
   @Override

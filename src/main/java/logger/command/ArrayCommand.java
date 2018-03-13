@@ -1,17 +1,13 @@
 package logger.command;
 
-import logger.Controller;
 import logger.command.CommandUtils.ArrayFormatter;
 import logger.formatter.Visitor;
 
 public final class ArrayCommand extends ArrayFormatter implements Command {
   private int[] arrayCommand;
-  private Controller controller;
 
-  public ArrayCommand(final int[] arrayCommand,
-                      final Controller controller) {
+  public ArrayCommand(final int[] arrayCommand) {
     this.arrayCommand = arrayCommand;
-    this.controller = controller;
   }
 
   /**
@@ -28,12 +24,12 @@ public final class ArrayCommand extends ArrayFormatter implements Command {
   }
 
   @Override
-  public void accumulate(final Command previousCommand) {
-
+  public boolean accumulate(final Command previousCommand) {
+    return true;
   }
 
   @Override
-  public void dontAccamulate() {
+  public void dontAccumulate() {
   }
 
   @Override

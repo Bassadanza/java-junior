@@ -3,8 +3,6 @@ package logger.command;
 import logger.Controller;
 import logger.formatter.Visitor;
 
-import java.util.Arrays;
-
 /**
  * Реализует буфер для аргументов переменной длины типа (@code int),
  * передающий их по очереди на суммирование классом (@code IntCommand)
@@ -19,14 +17,15 @@ public class MultyIntCommand implements Command {
   }
 
   @Override
-  public void accumulate(final Command previousCommand) {
+  public boolean accumulate(final Command previousCommand) {
 
+    return true;
   }
 
   @Override
-  public void dontAccamulate() {
+  public void dontAccumulate() {
     for (int current : messages) {
-      controller.execute(new IntCommand(current, controller));
+      controller.execute(new IntCommand(current));
     }
   }
 

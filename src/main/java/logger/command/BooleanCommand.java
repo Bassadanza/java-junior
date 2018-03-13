@@ -1,17 +1,19 @@
 package logger.command;
 
-import logger.Controller;
+import logger.command.CommandUtils.PrimitiveFormatterNAccumulate;
 import logger.formatter.Visitor;
 
-public final class BooleanCommand implements Command {
+public final class BooleanCommand extends PrimitiveFormatterNAccumulate implements Command {
   private int sameCounter;
-  private Controller controller;
   private boolean booleanMessage;
 
-  public BooleanCommand(final boolean booleanMessage,
-                        final Controller controller) {
-    this.controller = controller;
+  public BooleanCommand(final boolean booleanMessage) {
     this.booleanMessage = booleanMessage;
+  }
+
+  @Override
+  public Object getMessage() {
+    return booleanMessage;
   }
 
   /**
@@ -23,36 +25,26 @@ public final class BooleanCommand implements Command {
     return sameCounter;
   }
 
-  @Override
-  public Object getMessage() {
-    return booleanMessage;
+  public void setSum(int counter) {
+    this.sameCounter = counter;
   }
 
   @Override
-  public void accumulate(final Command previousCommand) {
-    if(getMessage() == previousCommand.getMessage()){
-      sameCounter = previousCommand.getCounter() + 1;
-    }else{
-      controller.flush();
-      dontAccamulate();
-    }
+  public boolean accumulate(final Command previousCommand) {
+    return accumulate(
+        previousCommand.getMessage().toString(),
+        getMessage().toString(),
+        previousCommand.getCounter());
   }
 
   @Override
-  public void dontAccamulate() {
+  public void dontAccumulate() {
     sameCounter = 1;
   }
 
   @Override
   public String decorate() {
-    if (getCounter() > 1) {
-      return getMessage()
-          + " (x"
-          + getCounter()
-          + ")";
-    } else {
-      return String.valueOf(getMessage());
-    }
+    return decorate(getMessage().toString(), getCounter());
   }
 
   @Override

@@ -19,7 +19,7 @@ public class Logger {
    * @param message объект типа {@code int} для логирования
    */
   public static void log(final int message) {
-    controller.execute(new IntCommand(message, controller));
+    controller.execute(new IntCommand(message));
   }
 
   /**
@@ -37,7 +37,7 @@ public class Logger {
    * @param message объект типа {@code String} для логирования
    */
   public static void log(final String message) {
-    controller.execute(new StringCommand(message, controller));
+    controller.execute(new StringCommand(message));
   }
 
   /**
@@ -55,7 +55,7 @@ public class Logger {
    * @param message объект типа {@code boolean} для логирования
    */
   public static void log(final boolean message) {
-    controller.execute(new BooleanCommand(message, controller));
+    controller.execute(new BooleanCommand(message));
   }
 
   /**
@@ -64,7 +64,7 @@ public class Logger {
    * @param message объект типа {@code byte} для логирования
    */
   public static void log(final byte message) {
-    controller.execute(new ByteCommand(message, controller));
+    controller.execute(new ByteCommand(message));
   }
 
   /**
@@ -73,7 +73,7 @@ public class Logger {
    * @param message объект типа {@code char} для логирования
    */
   public static void log(final char message) {
-    controller.execute(new CharCommand(message, controller));
+    controller.execute(new CharCommand(message));
   }
 
   /**
@@ -82,7 +82,7 @@ public class Logger {
    * @param message объект типа {@code int[]} для логирования
    */
   public static void log(final int[] message) {
-    controller.execute(new ArrayCommand(message, controller));
+    controller.execute(new ArrayCommand(message));
   }
 
   /**
@@ -91,7 +91,7 @@ public class Logger {
    * @param message объект типа {@code int[][]} для логирования
    */
   public static void log(final int[][] message) {
-    controller.execute(new MatrixCommand(message, controller));
+    controller.execute(new MatrixCommand(message));
   }
 
   /**
@@ -100,7 +100,7 @@ public class Logger {
    * @param message объект типа {@link Object} для логирования
    */
   public static void log(final Object message) {
-    controller.execute(new ObjectCommand(message, controller));
+    controller.execute(new ObjectCommand(message));
   }
 
   /**

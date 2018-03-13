@@ -1,54 +1,52 @@
 package logger.command;
 
-import logger.Controller;
+import logger.command.CommandUtils.PrimitiveFormatterNAccumulate;
 import logger.formatter.Visitor;
 
 /**
  * Аккумулирование входных команд типа (@Link String)
  */
-public final class StringCommand implements Command {
+public final class StringCommand extends PrimitiveFormatterNAccumulate implements Command {
   ;
   /* Текущее сообщение */
   private String stringMessage;
   /* Счётчик схожих сообщений, по умолчанию 0 */
   private int sameCount = 0;
-  private Controller controller;
 
+
+  public StringCommand(final String command) {
+    this.stringMessage = command;
+  }
+
+  @Override
+  public String getMessage() {
+    return stringMessage;
+  }
 
   public int getCounter() {
     return sameCount;
   }
 
-  public StringCommand(final String command,
-                       final Controller controllerr) {
-    this.stringMessage = command;
-    this.controller = controllerr;
+  @Override
+  protected void setSum(int counter) {
+    this.sameCount = counter;
   }
 
   @Override
-  public Object getMessage() {
-    return stringMessage;
+  public boolean accumulate(final Command previousCommand) {
+    return accumulate(
+        previousCommand.getMessage().toString(),
+        getMessage().toString(),
+        previousCommand.getCounter());
   }
 
   @Override
-  public void accumulate(final Command previousMessagee) {
-    sameCount = previousMessagee.getCounter() + 1;
-  }
-
-  @Override
-  public void dontAccamulate() {
+  public void dontAccumulate() {
     sameCount = 1;
   }
 
   public String decorate() {
-    if (getCounter() > 1) {
-      return getMessage()
-          + " (x"
-          + getCounter()
-          + ")";
-    } else {
-      return String.valueOf(getMessage());
-    }
+    return decorate(getMessage(), getCounter());
   }
 
   @Override

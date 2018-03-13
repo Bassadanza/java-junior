@@ -1,18 +1,24 @@
 package logger.command;
 
-import logger.Controller;
-import logger.command.CommandUtils.OverflowableDecimal;
+import logger.command.CommandUtils.DecimalOverflowNAccumulate;
 import logger.formatter.Visitor;
 
-public final class ByteCommand extends OverflowableDecimal implements Command {
-  private Controller controller;
+public final class ByteCommand extends DecimalOverflowNAccumulate implements Command {
   private byte byteMessage;
   private byte byteSum = 0;
 
-  public ByteCommand(final byte booleanMessage,
-                     final Controller controller) {
-    this.controller = controller;
+  public ByteCommand(final byte booleanMessage) {
     this.byteMessage = booleanMessage;
+  }
+
+  @Override
+  public Byte getMessage() {
+    return byteMessage;
+  }
+
+  @Override
+  public int getCounter() {
+    return byteSum;
   }
 
   @Override
@@ -26,33 +32,23 @@ public final class ByteCommand extends OverflowableDecimal implements Command {
   }
 
   @Override
-  public void accumulate(final Command previousCommand) {
-    if(isOverflow(previousCommand,byteMessage)){
-      controller.flush();
-      dontAccamulate();
-    }else{
-      byteSum = (byte) (previousCommand.getCounter() + byteMessage);
-    }
+  public boolean accumulate(final Command previousCommand) {
+    return accumulate(byteMessage, previousCommand.getCounter());
   }
 
   @Override
-  public void dontAccamulate() {
+  public void dontAccumulate() {
     byteSum = byteMessage;
+  }
+
+  @Override
+  protected void setCounter(int sum) {
+    this.byteSum = (byte) sum;
   }
 
   @Override
   public String decorate() {
     return String.valueOf(byteSum);
-  }
-
-  @Override
-  public Object getMessage() {
-    return byteMessage;
-  }
-
-  @Override
-  public int getCounter() {
-    return byteSum;
   }
 
   @Override

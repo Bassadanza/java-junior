@@ -1,10 +1,9 @@
 package com.acme.edu.iteration02;
 
-import logger.Logger;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
+import logger.Logger;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -32,7 +31,6 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         Logger.log("str 1");
         Logger.log(1);
         Logger.log(2);
-        Logger.flush();
         Logger.log("str 2");
         Logger.log(0);
         Logger.flush();

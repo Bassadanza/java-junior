@@ -17,15 +17,20 @@ public class MultyStringCommand implements Command {
   }
 
   @Override
-  public void accumulate(final Command previousCommand) {
+  public boolean accumulate(final Command previousCommand) {
     for (String current : messages) {
-      controller.execute(new StringCommand(current, controller));
+      controller.execute(new StringCommand(current));
     }
+    return true;
   }
 
   /**
    * Не реализуется
    */
+  @Override
+  public void dontAccumulate() {
+  }
+
   @Override
   public Object getMessage() {
     return messages;
@@ -43,17 +48,12 @@ public class MultyStringCommand implements Command {
    * Не реализуется
    */
   @Override
-  public String acceptVisitor(final Visitor visitor) {
+  public String decorate() {
     return null;
   }
 
   @Override
-  public void dontAccamulate() {
-
-  }
-
-  @Override
-  public String decorate() {
+  public String acceptVisitor(final Visitor visitor) {
     return null;
   }
 }

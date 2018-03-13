@@ -1,16 +1,14 @@
 package logger.command;
 
-import logger.Controller;
+import logger.command.CommandUtils.PrimitiveFormatterNAccumulate;
 import logger.formatter.Visitor;
 
-public final class CharCommand implements Command {
+public final class CharCommand extends PrimitiveFormatterNAccumulate implements Command {
 
-  private Controller controller;
   private Character charMessage;
   private int sameCount = 0;
 
-  public CharCommand(final char charMessage, final Controller controller) {
-    this.controller = controller;
+  public CharCommand(final char charMessage) {
     this.charMessage = charMessage;
   }
 
@@ -25,24 +23,25 @@ public final class CharCommand implements Command {
   }
 
   @Override
-  public void accumulate(final Command previousMessagee) {
-    sameCount = previousMessagee.getCounter() + 1;
+  public boolean accumulate(final Command previousCommand) {
+    return accumulate(
+        previousCommand.getMessage().toString(),
+        getMessage().toString(),
+        previousCommand.getCounter());
   }
 
   @Override
-  public void dontAccamulate() {
+  public void dontAccumulate() {
     sameCount = 1;
   }
 
+  @Override
+  protected void setSum(int counter) {
+    this.sameCount = counter;
+  }
+
   public String decorate() {
-    if (getCounter() > 1) {
-      return getMessage()
-          + " (x"
-          + getCounter()
-          + ")";
-    } else {
-      return String.valueOf(getMessage());
-    }
+    return decorate(getMessage().toString(), getCounter());
   }
 
   @Override

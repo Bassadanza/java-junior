@@ -34,13 +34,15 @@ public final class Controller {
   public void execute(final Command command) {
     if (previousCommand != null) {
       if (isTheSameType(command)) {
-        command.accumulate(previousCommand);
+        if (!command.accumulate(previousCommand)) {
+          flush();
+        }
       } else {
         flush();
-        command.dontAccamulate();
+        command.dontAccumulate();
       }
-    }else{
-      command.dontAccamulate();
+    } else {
+      command.dontAccumulate();
     }
     setPreviousCommand(command);
   }

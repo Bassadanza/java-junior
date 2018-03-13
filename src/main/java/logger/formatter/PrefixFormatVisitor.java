@@ -68,9 +68,4 @@ public final class PrefixFormatVisitor implements Visitor {
     return PRIMITIVE_ARRAY_MATRIX
         + matrixCommand.decorate();
   }
-
-  @Override
-  public String visitMultydimArray(final MultyArrayCommand multyArrayCommand) {
-    return null;
-  }
 }
