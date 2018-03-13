@@ -1,10 +1,10 @@
-package logger.messages;
+package logger.command;
 
 import logger.Controller;
-import logger.designer.Visitor;
-import logger.messages.CommandUtils.FlushUtil;
+import logger.formatter.Visitor;
 
 public final class ObjectCommand implements Command {
+  private int sameCounter;
   private Controller controller;
   private Object objectMessage;
 
@@ -16,8 +16,22 @@ public final class ObjectCommand implements Command {
 
   @Override
   public void accumulate(final Command previousCommand) {
-    FlushUtil.needToFlush(previousCommand, controller);
-    controller.setPreviousCommand(this);
+    if(objectMessage.equals(previousCommand.getMessage())){
+      sameCounter = previousCommand.getCounter() + 1;
+    }else {
+      controller.flush();
+      dontAccamulate();
+    }
+  }
+
+  @Override
+  public void dontAccamulate() {
+    sameCounter = 1;
+  }
+
+  @Override
+  public String decorate() {
+    return (String) objectMessage;
   }
 
   @Override
@@ -25,12 +39,9 @@ public final class ObjectCommand implements Command {
     return objectMessage;
   }
 
-  /**
-   * Метод не используется для данного типа данных
-   */
   @Override
   public int getCounter() {
-    return 0;
+    return sameCounter;
   }
 
   @Override

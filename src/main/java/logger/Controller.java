@@ -1,7 +1,7 @@
 package logger;
 
-import logger.designer.Visitor;
-import logger.messages.Command;
+import logger.formatter.Visitor;
+import logger.command.Command;
 import logger.printer.Printerr;
 
 
@@ -32,7 +32,17 @@ public final class Controller {
    * @param command сообщение для логирования
    */
   public void execute(final Command command) {
-    command.accumulate(previousCommand);
+    if (previousCommand != null) {
+      if (isTheSameType(command)) {
+        command.accumulate(previousCommand);
+      } else {
+        flush();
+        command.dontAccamulate();
+      }
+    }else{
+      command.dontAccamulate();
+    }
+    setPreviousCommand(command);
   }
 
   /**

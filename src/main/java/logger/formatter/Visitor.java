@@ -1,6 +1,6 @@
-package logger.designer;
+package logger.formatter;
 
-import logger.messages.*;
+import logger.command.*;
 
 /**
  * Интерфейс для выбора способа декорирования выводимого

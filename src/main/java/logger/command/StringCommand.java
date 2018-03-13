@@ -1,8 +1,7 @@
-package logger.messages;
+package logger.command;
 
 import logger.Controller;
-import logger.designer.Visitor;
-import logger.messages.CommandUtils.CharStringUtils;
+import logger.formatter.Visitor;
 
 /**
  * Аккумулирование входных команд типа (@Link String)
@@ -31,11 +30,25 @@ public final class StringCommand implements Command {
     return stringMessage;
   }
 
-
   @Override
   public void accumulate(final Command previousMessagee) {
-    sameCount = CharStringUtils.getSameCount(previousMessagee, controller, this);
-    controller.setPreviousCommand(this);
+    sameCount = previousMessagee.getCounter() + 1;
+  }
+
+  @Override
+  public void dontAccamulate() {
+    sameCount = 1;
+  }
+
+  public String decorate() {
+    if (getCounter() > 1) {
+      return getMessage()
+          + " (x"
+          + getCounter()
+          + ")";
+    } else {
+      return String.valueOf(getMessage());
+    }
   }
 
   @Override

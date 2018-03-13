@@ -12,7 +12,7 @@ import static com.acme.edu.Logger.*;
 import static java.lang.Math.sin;
 
 /**
- * Logs messages.
+ * Logs command.
  * @author EK
  * @param
  * @see

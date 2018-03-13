@@ -1,7 +1,7 @@
 package logger;
 
-import logger.designer.DesignVisitor;
-import logger.messages.*;
+import logger.formatter.PrefixFormatVisitor;
+import logger.command.*;
 
 /**
  * Логгирование сообщений разного типа
@@ -11,7 +11,7 @@ import logger.messages.*;
 public class Logger {
   private static Controller controller = new Controller(
       System.out::println,
-      new DesignVisitor());
+      new PrefixFormatVisitor());
 
   /**
    * Логирование сообщения {@code message} типа {@code int}

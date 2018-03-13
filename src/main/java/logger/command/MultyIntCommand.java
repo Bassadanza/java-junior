@@ -1,7 +1,9 @@
-package logger.messages;
+package logger.command;
 
 import logger.Controller;
-import logger.designer.Visitor;
+import logger.formatter.Visitor;
+
+import java.util.Arrays;
 
 /**
  * Реализует буфер для аргументов переменной длины типа (@code int),
@@ -18,6 +20,11 @@ public class MultyIntCommand implements Command {
 
   @Override
   public void accumulate(final Command previousCommand) {
+
+  }
+
+  @Override
+  public void dontAccamulate() {
     for (int current : messages) {
       controller.execute(new IntCommand(current, controller));
     }
@@ -39,9 +46,11 @@ public class MultyIntCommand implements Command {
     return 0;
   }
 
-  /**
-   * Не реализуется
-   */
+  @Override
+  public String decorate() {
+    return null;
+  }
+
   @Override
   public String acceptVisitor(final Visitor visitor) {
     return null;

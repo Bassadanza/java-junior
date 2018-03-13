@@ -1,7 +1,7 @@
-package logger.messages;
+package logger.command;
 
 import logger.Controller;
-import logger.designer.Visitor;
+import logger.formatter.Visitor;
 
 /**
  * Вывод многомерных массивов не реализован
@@ -28,5 +28,15 @@ public final class MultyArrayCommand implements Command {
   @Override
   public String acceptVisitor(final Visitor visitor) {
     return visitor.visitMultydimArray(this);
+  }
+
+  @Override
+  public void dontAccamulate() {
+
+  }
+
+  @Override
+  public String decorate() {
+    return null;
   }
 }

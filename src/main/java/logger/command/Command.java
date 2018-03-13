@@ -1,6 +1,6 @@
-package logger.messages;
+package logger.command;
 
-import logger.designer.Visitor;
+import logger.formatter.Visitor;
 
 public interface Command {
   /**
@@ -16,4 +16,7 @@ public interface Command {
 
   String acceptVisitor(final Visitor visitor);
 
+  void dontAccamulate();
+
+  String decorate();
 }

@@ -1,10 +1,10 @@
-package logger.messages;
+package logger.command;
 
 import logger.Controller;
-import logger.designer.Visitor;
-import logger.messages.CommandUtils.FlushUtil;
+import logger.command.CommandUtils.ArrayFormatter;
+import logger.formatter.Visitor;
 
-public final class MatrixCommand implements Command {
+public final class MatrixCommand extends ArrayFormatter implements Command {
   private Controller controller;
   private int[][] matrixCommand;
 
@@ -16,8 +16,11 @@ public final class MatrixCommand implements Command {
 
   @Override
   public void accumulate(final Command previousCommand) {
-    FlushUtil.needToFlush(previousCommand, controller);
-    controller.setPreviousCommand(this);
+  }
+
+  @Override
+  public void dontAccamulate() {
+
   }
 
   @Override
@@ -36,5 +39,17 @@ public final class MatrixCommand implements Command {
   @Override
   public String acceptVisitor(final Visitor visitor) {
     return visitor.visitMatrix(this);
+  }
+
+  @Override
+  public String decorate() {
+    StringBuilder strBuff = new StringBuilder();
+    strBuff.append("{").append(System.getProperty("line.separator"));
+    for (int[] firstLevelArray : (int[][]) getMessage()) {
+      strBuff.append(decorate(firstLevelArray))
+          .append(System.getProperty("line.separator"));
+    }
+    strBuff.append("}");
+    return String.valueOf(strBuff);
   }
 }
