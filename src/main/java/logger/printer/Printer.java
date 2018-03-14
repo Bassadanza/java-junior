@@ -4,6 +4,6 @@ package logger.printer;
  * Интерфейс вывода сообщений
  */
 @FunctionalInterface
-public interface Printerr {
+public interface Printer {
     void print(final Object decorate);
 }

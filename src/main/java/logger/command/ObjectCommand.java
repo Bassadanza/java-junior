@@ -1,11 +1,11 @@
 package logger.command;
 
-import logger.command.CommandUtils.PrimitiveFormatterNAccumulate;
+import logger.command.CommandUtils.PrimitiveFormatterNAccumulator;
 import logger.formatter.Visitor;
 
-public final class ObjectCommand extends PrimitiveFormatterNAccumulate implements Command {
+public final class ObjectCommand extends PrimitiveFormatterNAccumulator implements Command {
   private int sameCounter;
-  private Object objectMessage;
+   private final Object objectMessage;
 
   public ObjectCommand(final Object objectMessage) {
     this.objectMessage = objectMessage;
@@ -35,7 +35,7 @@ public final class ObjectCommand extends PrimitiveFormatterNAccumulate implement
   }
 
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
     sameCounter = 1;
   }
 

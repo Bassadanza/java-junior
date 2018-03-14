@@ -9,7 +9,7 @@ import logger.command.*;
  * @author Дмитрий Торопин
  */
 public class Logger {
-  private static Controller controller = new Controller(
+  private static final Controller controller = new Controller(
       System.out::println,
       new PrefixFormatVisitor());
 

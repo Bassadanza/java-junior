@@ -4,7 +4,7 @@ import logger.command.CommandUtils.ArrayFormatter;
 import logger.formatter.Visitor;
 
 public final class ArrayCommand extends ArrayFormatter implements Command {
-  private int[] arrayCommand;
+  private final int[] arrayCommand;
 
   public ArrayCommand(final int[] arrayCommand) {
     this.arrayCommand = arrayCommand;
@@ -29,7 +29,7 @@ public final class ArrayCommand extends ArrayFormatter implements Command {
   }
 
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
   }
 
   @Override

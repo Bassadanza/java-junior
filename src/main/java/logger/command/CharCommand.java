@@ -1,11 +1,11 @@
 package logger.command;
 
-import logger.command.CommandUtils.PrimitiveFormatterNAccumulate;
+import logger.command.CommandUtils.PrimitiveFormatterNAccumulator;
 import logger.formatter.Visitor;
 
-public final class CharCommand extends PrimitiveFormatterNAccumulate implements Command {
+public final class CharCommand extends PrimitiveFormatterNAccumulator implements Command {
 
-  private Character charMessage;
+  private final Character charMessage;
   private int sameCount = 0;
 
   public CharCommand(final char charMessage) {
@@ -31,7 +31,7 @@ public final class CharCommand extends PrimitiveFormatterNAccumulate implements 
   }
 
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
     sameCount = 1;
   }
 

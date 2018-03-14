@@ -1,11 +1,11 @@
 package logger.command;
 
-import logger.command.CommandUtils.PrimitiveFormatterNAccumulate;
+import logger.command.CommandUtils.PrimitiveFormatterNAccumulator;
 import logger.formatter.Visitor;
 
-public final class BooleanCommand extends PrimitiveFormatterNAccumulate implements Command {
+public final class BooleanCommand extends PrimitiveFormatterNAccumulator implements Command {
   private int sameCounter;
-  private boolean booleanMessage;
+  private final boolean booleanMessage;
 
   public BooleanCommand(final boolean booleanMessage) {
     this.booleanMessage = booleanMessage;
@@ -38,7 +38,7 @@ public final class BooleanCommand extends PrimitiveFormatterNAccumulate implemen
   }
 
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
     sameCounter = 1;
   }
 

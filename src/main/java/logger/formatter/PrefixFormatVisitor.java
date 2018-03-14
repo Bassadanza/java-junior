@@ -15,8 +15,8 @@ public final class PrefixFormatVisitor implements Visitor {
 
   public String export(final Command... args) {
     String message = "";
-    for (Command messagee : args) {
-      message = messagee.acceptVisitor(this);
+    for (Command command : args) {
+      message = command.acceptVisitor(this);
     }
     return message;
   }

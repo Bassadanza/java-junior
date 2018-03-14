@@ -1,10 +1,10 @@
 package logger.command;
 
-import logger.command.CommandUtils.DecimalOverflowNAccumulate;
+import logger.command.CommandUtils.DecimalOverflowNAccumulator;
 import logger.formatter.Visitor;
 
-public final class IntCommand extends DecimalOverflowNAccumulate implements Command {
-  private int intMessage;
+public final class IntCommand extends DecimalOverflowNAccumulator implements Command {
+  private final int intMessage;
   private int intSum = 0;
 
   public IntCommand(final int intMessage) {
@@ -38,7 +38,7 @@ public final class IntCommand extends DecimalOverflowNAccumulate implements Comm
   }
 
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
     intSum = intMessage;
   }
 

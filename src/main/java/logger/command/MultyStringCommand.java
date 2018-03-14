@@ -28,7 +28,7 @@ public class MultyStringCommand implements Command {
    * Не реализуется
    */
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
   }
 
   @Override

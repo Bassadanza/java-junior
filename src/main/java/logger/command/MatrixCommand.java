@@ -4,7 +4,7 @@ import logger.command.CommandUtils.ArrayFormatter;
 import logger.formatter.Visitor;
 
 public final class MatrixCommand extends ArrayFormatter implements Command {
-  private int[][] matrixCommand;
+  private final int[][] matrixCommand;
 
   public MatrixCommand(final int[][] matrixCommand) {
     this.matrixCommand = matrixCommand;
@@ -16,7 +16,7 @@ public final class MatrixCommand extends ArrayFormatter implements Command {
   }
 
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
 
   }
 

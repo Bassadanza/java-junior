@@ -1,12 +1,12 @@
 package logger.command.CommandUtils;
 
-public abstract class DecimalOverflowNAccumulate {
+public abstract class DecimalOverflowNAccumulator {
 
   protected abstract int getMin();
 
   protected abstract int getMax();
 
-  protected boolean isOverflow(final int previousCounter,
+  private boolean isOverflow(final int previousCounter,
                                final int message) {
     return (long) message
         + previousCounter <= getMax()
@@ -19,12 +19,12 @@ public abstract class DecimalOverflowNAccumulate {
       setCounter((previousCounter + message));
       return true;
     } else {
-      dontAccumulate();
+      notAccumulated();
       return false;
     }
   }
 
-  protected abstract void dontAccumulate();
+  protected abstract void notAccumulated();
 
   protected abstract void setCounter(int sum);
 }

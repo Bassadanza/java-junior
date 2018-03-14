@@ -1,10 +1,10 @@
 package logger.command;
 
-import logger.command.CommandUtils.DecimalOverflowNAccumulate;
+import logger.command.CommandUtils.DecimalOverflowNAccumulator;
 import logger.formatter.Visitor;
 
-public final class ByteCommand extends DecimalOverflowNAccumulate implements Command {
-  private byte byteMessage;
+public final class ByteCommand extends DecimalOverflowNAccumulator implements Command {
+  private final byte byteMessage;
   private byte byteSum = 0;
 
   public ByteCommand(final byte booleanMessage) {
@@ -37,7 +37,7 @@ public final class ByteCommand extends DecimalOverflowNAccumulate implements Com
   }
 
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
     byteSum = byteMessage;
   }
 

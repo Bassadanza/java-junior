@@ -1,6 +1,6 @@
 package logger.command.CommandUtils;
 
-public abstract class PrimitiveFormatterNAccumulate {
+public abstract class PrimitiveFormatterNAccumulator {
   public String decorate(String message, int counter) {
     if (counter > 1) {
       return message
@@ -17,12 +17,12 @@ public abstract class PrimitiveFormatterNAccumulate {
       setSum(previousCounter + 1);
       return true;
     } else {
-      dontAccumulate();
+      notAccumulated();
       return false;
     }
   }
 
-  protected abstract void dontAccumulate();
+  protected abstract void notAccumulated();
 
   protected abstract void setSum(int counter);
 }

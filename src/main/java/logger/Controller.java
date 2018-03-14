@@ -2,7 +2,7 @@ package logger;
 
 import logger.formatter.Visitor;
 import logger.command.Command;
-import logger.printer.Printerr;
+import logger.printer.Printer;
 
 
 /**
@@ -11,17 +11,17 @@ import logger.printer.Printerr;
  * (@code previousCommand) типа (@code Command)
  */
 public final class Controller {
-  private Printerr printer;
+  private final Printer printer;
   private Command previousCommand = null;
-  private Visitor concreteVisitor;
+  private final Visitor concreteVisitor;
 
-  public Controller(final Printerr printer,
+  public Controller(final Printer printer,
                     final Visitor visitor) {
     this.concreteVisitor = visitor;
     this.printer = printer;
   }
 
-  public void setPreviousCommand(final Command previousCommand) {
+  private void setPreviousCommand(final Command previousCommand) {
     this.previousCommand = previousCommand;
   }
 
@@ -39,10 +39,10 @@ public final class Controller {
         }
       } else {
         flush();
-        command.dontAccumulate();
+        command.notAccumulated();
       }
     } else {
-      command.dontAccumulate();
+      command.notAccumulated();
     }
     setPreviousCommand(command);
   }
@@ -54,7 +54,7 @@ public final class Controller {
    * @return true, если типы совпадают
    * false, если типы разные
    */
-  public boolean isTheSameType(final Command command) {
+  private boolean isTheSameType(final Command command) {
     return previousCommand.getMessage().getClass()
         .equals(command.getMessage().getClass());
   }

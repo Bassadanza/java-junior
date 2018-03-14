@@ -16,7 +16,7 @@ public interface Command {
 
   String acceptVisitor(final Visitor visitor);
 
-  void dontAccumulate();
+  void notAccumulated();
 
   String decorate();
 }

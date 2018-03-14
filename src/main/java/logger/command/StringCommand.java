@@ -1,21 +1,21 @@
 package logger.command;
 
-import logger.command.CommandUtils.PrimitiveFormatterNAccumulate;
+import logger.command.CommandUtils.PrimitiveFormatterNAccumulator;
 import logger.formatter.Visitor;
 
 /**
  * Аккумулирование входных команд типа (@Link String)
  */
-public final class StringCommand extends PrimitiveFormatterNAccumulate implements Command {
+public final class StringCommand extends PrimitiveFormatterNAccumulator implements Command {
   ;
   /* Текущее сообщение */
-  private String stringMessage;
+  private final String stringMessage;
   /* Счётчик схожих сообщений, по умолчанию 0 */
   private int sameCount = 0;
 
 
-  public StringCommand(final String command) {
-    this.stringMessage = command;
+  public StringCommand(final String message) {
+    this.stringMessage = message;
   }
 
   @Override
@@ -36,12 +36,12 @@ public final class StringCommand extends PrimitiveFormatterNAccumulate implement
   public boolean accumulate(final Command previousCommand) {
     return accumulate(
         previousCommand.getMessage().toString(),
-        getMessage().toString(),
+        getMessage(),
         previousCommand.getCounter());
   }
 
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
     sameCount = 1;
   }
 

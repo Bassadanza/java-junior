@@ -8,8 +8,8 @@ import logger.formatter.Visitor;
  * передающий их по очереди на суммирование классом (@code IntCommand)
  */
 public class MultyIntCommand implements Command {
-  private Controller controller;
-  private Integer[] messages;
+  private final  Controller controller;
+  private final Integer[] messages;
 
   public MultyIntCommand(final Controller controller, final Integer[] messages) {
     this.controller = controller;
@@ -23,7 +23,7 @@ public class MultyIntCommand implements Command {
   }
 
   @Override
-  public void dontAccumulate() {
+  public void notAccumulated() {
     for (int current : messages) {
       controller.execute(new IntCommand(current));
     }
